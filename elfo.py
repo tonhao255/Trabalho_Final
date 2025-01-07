@@ -7,3 +7,12 @@ class Elfo(Pessoa):
 
         self.especialidade = especialidade
         self.departamento = departamento
+
+
+    @property
+    def especialidade(self):
+        return self._especialidade
+
+    @property
+    def departamento(self):
+        return self._departamento

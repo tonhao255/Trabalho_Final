@@ -6,12 +6,12 @@ Participantes:
     Antônio Henrique Rohling Froehner <a href="https://github.com/tonhao255">[tonhao255]</a>
   </li>
   <li>
-    Artur Pagel <a href="https://github.com/ArturPagel">ArturPagel</a>
+    Artur Pagel <a href="https://github.com/ArturPagel">[ArturPagel]</a>
   </li>
   <li>
-    Gabriel Siewerdt <a href="https://github.com/GSiewerdt">GSiewerdt</a>
+    Gabriel Siewerdt <a href="https://github.com/GSiewerdt">[GSiewerdt]</a>
   </li>
   <li>
-    Lucas Salvador <a href="https://github.com/LucasS-alvador">LucasS-alvador</a>
+    Lucas Salvador <a href="https://github.com/LucasS-alvador">[LucasS-alvador]</a>
   </li>
 </ul>

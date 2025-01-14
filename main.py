@@ -9,10 +9,39 @@ import os
 import pygame
 import time
 
+# bg_music = str(os.path.realpath(__file__))[0:-7] + "\\jingle_my_bells.mp3"
+# error_snd = str(os.path.realpath(__file__))[0:-7] + "\\metal_pipe.mp3"
 
-pygame.mixer.init()
-pygame.mixer.music.load("C:\\Users\\Suporte\\Documents\\Trabalho_Final-main\\jingle_my_bells.mp3")
-pygame.mixer.music.play(loops=-1, start=0)
+# pygame.mixer.init()
+# pygame.mixer.music.load(bg_music)
+# pygame.mixer.music.play(loops=-1, start=0)
+
+def error(error_msg:str):
+    print(str(error_msg))
+    # pygame.mixer.music.load(error_snd)
+    # pygame.mixer.music.play(loops=1, start=0)
+    # time.sleep(3)
+    # pygame.mixer.music.load(bg_music)
+    # pygame.mixer.music.play(loops=-1, start=0)
+
+os.system('cls' if os.name == 'nt' else 'clear')
+print('''         |
+        -+-
+         A
+        /=\\         
+      i/ O \\i   
+      /=====\\      |,\\/,| |[_' |[_]) |[_]) \\\\//
+      /  i  \\      ||\\/|| |[_, ||'\\, ||'\\,  ||
+    i/ O * O \\i    
+    /=========\\      ___ __ __ ____  __  __  ____  _  _    __    __
+    /  *   *  \\     // ' |[_]| |[_]) || ((_' '||' |,\\/,|  //\\\\  ((_'
+  i/ O   i   O \\i   \\\\_, |[']| ||'\\, || ,_))  ||  ||\\/|| //``\\\\ ,_))
+  /=============\\  
+  /  O   i   O  \\  
+i/ *   O   O   * \\i
+/=================\\
+       |___|''')    
+time.sleep(2)
 
 data = Path(str(os.path.realpath(__file__))[0:-7] + "\\data")
 if not data.is_dir():
@@ -36,24 +65,7 @@ if not presente.is_file():
 
 while(True):
     os.system('cls' if os.name == 'nt' else 'clear')
-    print('''         |
-        -+-
-         A
-        /=\\         
-      i/ O \\i   
-      /=====\\      |,\/,| |[_' |[_]) |[_]) \\\\//
-      /  i  \\      ||\/|| |[_, ||'\, ||'\,  ||
-    i/ O * O \\i    
-    /=========\\      ___ __ __ ____  __  __  ____  _  _    __    __
-    /  *   *  \\     // ' |[_]| |[_]) || ((_' '||' |,\/,|  //\\\\  ((_'
-  i/ O   i   O \i   \\\\_, |[']| ||'\, || ,_))  ||  ||\/|| //``\\\\ ,_))
-  /=============\\  
-  /  O   i   O  \\  
-i/ *   O   O   * \\i
-/=================\\
-       |___|''')    
-    time.sleep(2)
-    os.system('cls' if os.name == 'nt' else 'clear')
+
     print("\n-------Welcome to the Jolly System-------")
     print("Selecione serviço: ")
     print("1 - Edição de Elfo")
@@ -62,35 +74,94 @@ i/ *   O   O   * \\i
     print("4 - Edição de Claus")
 
     try:
-        n = int(input("--->"))
-        if n > 4 or n < 1:
+        slct_servico = int(input("--->"))
+        if slct_servico > 4 or slct_servico < 1:
             raise ValueError
     except:
-        print("Opção inválida, tente novamente.")
-        pygame.mixer.music.load("C:\\Users\\Suporte\\Documents\\Trabalho_Final-main\\metal_pipe.mp3")
-        pygame.mixer.music.play(loops=1, start=0)
-        time.sleep(3)
-        pygame.mixer.music.load("C:\\Users\\Suporte\\Documents\\Trabalho_Final-main\\jingle_my_bells.mp3")
-        pygame.mixer.music.play(loops=-1, start=0)
+        error("Opção inválida, tente novamente.") # <--- função interna criada lá em cima
     
-    if n == 1:
+    if slct_servico == 1:
         
-        o = input("Imprimir Elfos? digite 1: ")
-        if o == "1":
+        slct_print = input("Imprimir Elfos? digite 1: ")# só acontece caso ele queira printar
+        wrong = 0
+        if slct_print == "1":
             with open(elfo) as elfo_data:
                 elfo_reader = csv.reader(elfo_data, delimiter=',')
                 j = 0
                 for i in elfo_reader:
                     j += 1
-                    print(j)
+                    print("")
+                    print(f"------Elfo N°{j}------")
                     try:
                         print(f'Nome: {i[0]} \nSobrenome: {i[1]} \nIdade: {i[2]} \nEndereco: {i[3]} \nEspecialidade: {i[4]} \nDepartamento: {i[5]}')
-                        p = int(input("Selecione um Elfo: "))
                     except:
-                        print("não foi possivel realizar a mostra de dados, o arquivo pode estar corrompido!")
-                        pygame.mixer.music.load("C:\\Users\\Suporte\\Documents\\Trabalho_Final-main\\metal_pipe.mp3")
-                        pygame.mixer.music.play(loops=1, start=0)
-                        time.sleep(3)
+                        error("não foi possivel realizar a mostra de dados, o arquivo pode estar corrompido!")
+                        wrong = 1
+            
+        if wrong == 0:
+
+            print("")
+            print("---------Seleção----------")
+            print("selecione elfo por número (0 cancela)")
+
+            try:
+                slct_individuo = int(input("--->"))
+                if slct_individuo == 0:
+                    pass
+                if slct_individuo > j or slct_individuo < 1:
+                    raise ValueError
+                with open(elfo) as elfo_data:
+                    elfo_reader = csv.reader(elfo_data, delimiter=',')
+                    k = 0
+                    for i in elfo_reader:
+                        k += 1
+                        if k == slct_individuo:
+                            try:
+                                print(f'Nome: {i[0]} \nSobrenome: {i[1]} \nIdade: {i[2]} \nEndereco: {i[3]} \nEspecialidade: {i[4]} \nDepartamento: {i[5]}')
+                            except:
+                                error("não foi possivel realizar a mostra de dados, o arquivo pode estar corrompido!")
+                                wrong = 1
+
+                if wrong == 0:
+                    print(f"-------Editando {i[0]}-------")
+                    print("Escolha o que vai editar (0 cancela): ")
+                    print("1 - Nome")
+                    print("2 - Sobrenome")
+                    print("3 - Idade")
+                    print("4 - Endereço")
+                    print("5 - Especialidade")
+                    print("6 - Departamento")
+                    try:
+                        slct_opcao = int(input("--->"))
+                        if slct_opcao == 0:
+                            pass #pra lembrar que 0 é cancelar
+                            
+                        if slct_opcao > 6 or slct_opcao < 1:
+                            raise ValueError
+                        
+                        if slct_opcao == 1:
+                            novo = input("Insira novo nome: ")
+
+                        if slct_opcao == 2:
+                            pass
+                        
+                        if slct_opcao == 3:
+                            pass
+
+                        if slct_opcao == 4:
+                            pass
+
+                        if slct_opcao == 5:
+                            pass
+                        
+                        if slct_opcao == 6:
+                            pass
+
+                    except:
+                        error("Opção inválida, tente novamente.")
+
+            except:
+                error("Opção inválida, tente novamente.")
 
 
 # with open(data) as data:

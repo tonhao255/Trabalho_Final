@@ -43,7 +43,7 @@ class Crianca(Pessoa):
         if isinstance(valor, int):
             self._lista_ranking = valor
         else:
-            raise ValueError("O atributo 'lista_ranking' deve ser um número inteiro)
+            raise ValueError("O atributo 'lista_ranking' deve ser um número inteiro")
         
     # CTRL + K + C: Comentar
     # CTRL + K + U: Descomentar

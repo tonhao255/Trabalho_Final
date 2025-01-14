@@ -1,4 +1,5 @@
 #Deixei esses raise value error assim por que é para debugg no codigo o usuario vai digitar s(sim) ou n(não)
+#Por a classe ser publica n seria nescessario fazer os get e set, mas como temos validação é nescessario os setters
 
 class Presente:
     def __init__(self, nome_presente: str, tamanho_presente: int, 

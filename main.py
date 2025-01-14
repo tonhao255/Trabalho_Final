@@ -11,7 +11,8 @@ import time
 
 
 pygame.mixer.init()
-pygame.mixer.music.load("C:\\Users\\Suporte\\Documents\\Trabalho_Final-main\\metal_pipe.mp3")
+pygame.mixer.music.load("C:\\Users\\Suporte\\Documents\\Trabalho_Final-main\\jingle_my_bells.mp3")
+pygame.mixer.music.play(loops=-1, start=0)
 
 data = Path(str(os.path.realpath(__file__))[0:-7] + "\\data")
 if not data.is_dir():
@@ -38,17 +39,17 @@ while(True):
     print('''         |
         -+-
          A
-        /=\         
-      i/ O \i   
-      /=====\      |,\/,| |[_' |[_]) |[_]) \\\\//
-      /  i  \      ||\/|| |[_, ||'\, ||'\,  ||
-    i/ O * O \i    
-    /=========\      ___ __ __ ____  __  __  ____  _  _    __    __
-    /  *   *  \     // ' |[_]| |[_]) || ((_' '||' |,\/,|  //\\\\  ((_'
+        /=\\         
+      i/ O \\i   
+      /=====\\      |,\/,| |[_' |[_]) |[_]) \\\\//
+      /  i  \\      ||\/|| |[_, ||'\, ||'\,  ||
+    i/ O * O \\i    
+    /=========\\      ___ __ __ ____  __  __  ____  _  _    __    __
+    /  *   *  \\     // ' |[_]| |[_]) || ((_' '||' |,\/,|  //\\\\  ((_'
   i/ O   i   O \i   \\\\_, |[']| ||'\, || ,_))  ||  ||\/|| //``\\\\ ,_))
-  /=============\  
-  /  O   i   O  \  
-i/ *   O   O   * \i
+  /=============\\  
+  /  O   i   O  \\  
+i/ *   O   O   * \\i
 /=================\\
        |___|''')    
     time.sleep(2)
@@ -66,7 +67,11 @@ i/ *   O   O   * \i
             raise ValueError
     except:
         print("Opção inválida, tente novamente.")
-        time.sleep(2)
+        pygame.mixer.music.load("C:\\Users\\Suporte\\Documents\\Trabalho_Final-main\\metal_pipe.mp3")
+        pygame.mixer.music.play(loops=1, start=0)
+        time.sleep(3)
+        pygame.mixer.music.load("C:\\Users\\Suporte\\Documents\\Trabalho_Final-main\\jingle_my_bells.mp3")
+        pygame.mixer.music.play(loops=-1, start=0)
     
     if n == 1:
         
@@ -80,13 +85,12 @@ i/ *   O   O   * \i
                     print(j)
                     try:
                         print(f'Nome: {i[0]} \nSobrenome: {i[1]} \nIdade: {i[2]} \nEndereco: {i[3]} \nEspecialidade: {i[4]} \nDepartamento: {i[5]}')
-                        n = input("")
+                        p = int(input("Selecione um Elfo: "))
                     except:
                         print("não foi possivel realizar a mostra de dados, o arquivo pode estar corrompido!")
-                        pygame.mixer.music.play(loops=2, start=0)
+                        pygame.mixer.music.load("C:\\Users\\Suporte\\Documents\\Trabalho_Final-main\\metal_pipe.mp3")
+                        pygame.mixer.music.play(loops=1, start=0)
                         time.sleep(3)
-
-        p = int(input("Selecione um Elfo: "))
 
 
 # with open(data) as data:

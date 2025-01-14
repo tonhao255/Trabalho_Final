@@ -1,3 +1,5 @@
+#Deixei esses raise value error assim por que é para debugg no codigo o usuario vai digitar s(sim) ou n(não)
+
 from pessoa import Pessoa
 
 class Crianca(Pessoa):

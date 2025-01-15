@@ -13,37 +13,34 @@ class Crianca(Pessoa):
         self._lista_ranking = lista_ranking
 
     @property
-    def chamine(self):
+    def get_chamine(self):
         return self._chamine
 
-    @chamine.setter
-    def chamine(self, valor: bool):
-        if isinstance(valor, bool):
-            self._chamine = valor
-        else:
-            raise ValueError("O atributo 'chamine' deve ser do tipo bool.")
+    @get_chamine.setter
+    def set_chamine(self, valor: bool):
+        self._chamine = valor
 
     @property
-    def status_presentes(self):
+    def get_status_presentes(self):
         return self._status_presentes
 
-    @status_presentes.setter
-    def status_presentes(self, valor: bool):
-        if isinstance(valor, bool):
-            self._status_presentes = valor
-        else:
-            raise ValueError("O atributo 'status_presentes' deve ser do tipo bool.")
+    @get_status_presentes.setter
+    def set_status_presentes(self, valor: bool):
+        self._status_presentes = valor
 
     @property
-    def lista_ranking(self):
+    def get_lista_ranking(self):
         return self._lista_ranking
 
-    @lista_ranking.setter
-    def lista_ranking(self, valor: int):
-        if isinstance(valor, int):
-            self._lista_ranking = valor
-        else:
-            raise ValueError("O atributo 'lista_ranking' deve ser um número inteiro)
+    @get_lista_ranking.setter
+    def set_lista_ranking(self, valor: int):
+        self._lista_ranking = valor
+        
+    def __str__(self):
+        return f'Criança: {self.get_nome} {self.get_sobrenome}\nIdade: {self.get_idade}\nEndereço: {self.get_endereco}\nChamine: {self.get_chamine}\nPresentes: {self.get_status_presentes}\nLista Ranking: {self.get_lista_ranking}'
+    
+    def row(self):
+        return [self.get_nome,self.get_sobrenome,self.get_idade,self.get_endereco,self.get_chamine,self.get_status_presentes,self.get_lista_ranking]
         
     # CTRL + K + C: Comentar
     # CTRL + K + U: Descomentar

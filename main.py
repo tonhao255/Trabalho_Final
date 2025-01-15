@@ -368,7 +368,93 @@ while(True):
                 myFile = csv.writer(file)
                 for i in range(len(lista_presentes)):
                     myFile.writerow(lista_presentes[i].row())
+                    
+    if slct_servico == 4:
 
+        lista_claus = []
+        with open(claus, 'r') as file:
+            myFile = csv.reader(file, delimiter=",")
+            for row in myFile:
+                try:
+                    lista_claus.append(Claus(str(row[0]), str(row[1]), str(row[2]), str(row[3]), str(row[4])))
+                except:
+                    error("Erro ao carregar dados do arquivo.")
+                    continue
+                
+            slct_print = input("Imprimir Claus? digite 1: ")
+            if slct_print == "1":
+                j = 0
+                for i in lista_claus:
+                    j += 1
+                    print(f"\n------Claus N°{j}------")
+                    print(i)
+
+            print("\n---------Seleção----------")
+            print("selecione Claus por número (0 cancela)")
+
+            try:
+                slct_individuo = int(input("--->"))
+                if slct_individuo == 0:
+                    continue
+                if slct_individuo > len(lista_claus) or slct_individuo < 0:
+                    raise ValueError
+            except:
+                error("Opção inválida, tente novamente.")
+                continue
+
+            individuo = lista_claus[slct_individuo - 1]
+            print(individuo)
+            print(f"\n-------Editando {lista_claus[slct_individuo - 1].get_nome}-------")
+            print("Escolha o que vai editar (0 cancela): ")
+            print("1 - Nome")
+            print("2 - Sobrenome")
+            print("3 - Idade")
+            print("4 - Endereço")
+            print("5 - licensa_treno")
+
+            try:
+                slct_opcao = int(input("--->"))
+                if slct_opcao == 0:
+                    continue
+                if slct_opcao > 5 or slct_opcao < 1:
+                    raise ValueError
+            except:
+                error("Opção inválida, tente novamente.")
+                continue                
+        
+            if slct_opcao == 1:
+                novo = input("Insira novo nome: ")
+                individuo.set_nome = novo
+        
+            if slct_opcao == 2:
+                novo = input("Insira novo sobrenome: ")
+                individuo.set_sobrenome = novo
+
+            if slct_opcao == 3:
+                novo = input("Insira nova idade: ")
+                individuo.set_idade = novo
+        
+            if slct_opcao == 4:
+                novo = input("Insira novo endereço: ")
+                individuo.set_endereco = novo
+        
+            if slct_opcao == 5:
+                novo = input("Insira a nova licensa do treno: ")
+                individuo.set_licensa_treno = novo
+
+                print("---------------------")
+                print(individuo)
+                print("---------------------")
+                print("Manter alterações? (Digite S)")
+                manter = input("--->")
+
+                if manter.upper() == "S":
+                    lista_claus[slct_individuo - 1] = individuo
+
+                    with open('data\\claus.csv', 'w+', newline='') as file:
+                        myFile = csv.writer(file)
+                        for i in range(len(lista_claus)):
+                            myFile.writerow(lista_claus[i].row())
 
 
 # with open(data) as data:

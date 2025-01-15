@@ -26,17 +26,7 @@ class Elfo(Pessoa):
     
     @get_departamento.setter
     def set_departamento(self, valor: str):
-        if isinstance(valor, str):
-            self.__departamento = valor
-        else:
-            raise ValueError("O departamento deve ser uma string.")
-        
-    def presente_feito(self, presente):
-        if isinstance(presente, Presente):
-            presente.presente_produzido = True
-            print(f"O presente '{presente.nome_presente}' foi produzido pelo elfo {self._nome}.")
-        else:
-            raise ValueError("O argumento deve ser uma instância da classe Presente.")
+        self.__departamento = valor
 
     def __str__(self):
         return f'Elfo: {self.get_nome} {self.get_sobrenome}\nIdade: {self.get_idade}\nEndereço: {self.get_endereco}\nEspecialidade: {self.__especialidade}\nDepartamento: {self.__departamento}'

@@ -67,6 +67,7 @@ if not presente.is_file():
 
 while(True):
 
+    #region menu
     os.system('cls' if os.name == 'nt' else 'clear')
 
     print("\n-------Welcome to the Jolly System-------")
@@ -86,6 +87,8 @@ while(True):
 
     print("ok")
     time.sleep(1)
+    #endregion
+
     if slct_servico == 1:
         
         lista_elfos = []
@@ -280,6 +283,93 @@ while(True):
                 myFile = csv.writer(file)
                 for i in range(len(lista_criancas)):
                     myFile.writerow(lista_criancas[i].row())
+
+    if slct_servico == 3:
+        
+        lista_presentes = []
+        with open(presente, 'r') as file:
+            myFile = csv.reader(file, delimiter=",")
+            for row in myFile:
+                try:
+                    lista_presentes.append(Presente(str(row[0]), str(row[1]), str(row[2]), str(row[3])))
+                except:
+                    error("Erro ao carregar dados do arquivo.")
+                    continue
+
+        slct_print = input("Imprimir Presentes? digite 1: ")
+        
+        if slct_print == "1":
+            j = 0
+            for i in lista_presentes:
+                j += 1
+                print("")
+                print(f"------Presente N°{j}------")
+                print(i)
+
+        print("")
+        print("---------Seleção----------")
+        print("selecione presente por número (0 cancela)")
+
+        try:
+            slct_individuo = int(input("--->"))
+            if slct_individuo == 0:
+                continue
+            if slct_individuo > len(lista_presentes) or slct_individuo < 0:
+                raise ValueError
+        except:
+            error("Opção inválida, tente novamente.")
+            continue
+
+        individuo = lista_presentes[slct_individuo - 1]
+        print(individuo)
+        print(f"\n-------Editando {lista_presentes[slct_individuo - 1].get_nome_presente}-------")
+        print("Escolha o que vai editar (0 cancela): ")
+        print("1 - Nome")
+        print("2 - Tamanho")
+        print("3 - Produzido")
+        print("4 - Entregue")
+
+        try:
+            slct_opcao = int(input("--->"))
+            if slct_opcao == 0:
+                continue
+            if slct_opcao > 4 or slct_opcao < 1:
+                raise ValueError
+        except:
+            error("Opção inválida, tente novamente.")
+            continue                
+        
+        if slct_opcao == 1:
+            novo = input("Insira novo nome: ")
+            individuo.set_nome_presente = novo
+
+        if slct_opcao == 2:
+            novo = input("Insira novo tamanho: ")
+            individuo.set_tamanho = novo
+        
+        if slct_opcao == 3:
+            novo = input("Insira novo status produzido: ")
+            individuo.set_status_produzido = novo
+
+        if slct_opcao == 4:
+            novo = input("Insira novo status entregue: ")
+            individuo.set_status_entregue = novo
+
+        print("---------------------")
+        print(individuo)
+        print("---------------------")
+        print("Manter alterações? (Digite S)")
+        manter = input("--->")
+
+        if manter.upper() == "S":
+            lista_presentes[slct_individuo - 1] = individuo
+
+            with open('data\\presente.csv', 'w+', newline='') as file:
+                myFile = csv.writer(file)
+                for i in range(len(lista_presentes)):
+                    myFile.writerow(lista_presentes[i].row())
+
+
 
 # with open(data) as data:
 #     reader = csv.reader(data, delimiter=',')

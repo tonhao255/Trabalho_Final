@@ -13,19 +13,19 @@ class Elfo(Pessoa):
         self.__departamento = departamento
 
     @property
-    def especialidadeDef(self):
+    def get_especialidade(self):
         return self.__especialidade
     
-    @especialidadeDef.setter
-    def especialidadeDef(self, valor: str):
+    @get_especialidade.setter
+    def set_especialidade(self, valor: str):
         self.__especialidade = valor
 
     @property
-    def departamentoDef(self):
+    def get_departamento(self):
         return self.__departamento
     
-    @departamentoDef.setter
-    def departamentoDef(self, valor: str):
+    @get_departamento.setter
+    def set_departamento(self, valor: str):
         if isinstance(valor, str):
             self.__departamento = valor
         else:
@@ -37,9 +37,9 @@ class Elfo(Pessoa):
             print(f"O presente '{presente.nome_presente}' foi produzido pelo elfo {self._nome}.")
         else:
             raise ValueError("O argumento deve ser uma instância da classe Presente.")
-        
+
     def __str__(self):
-        return f'Elfo: {self.nomeDef} {self.sobrenomeDef}\nIdade: {self.idadeDef}\nEndereço: {self.enderecoDef}\nEspecialidade: {self.especialidadeDef}\nDepartamento: {self.departamentoDef}'
+        return f'Elfo: {self.get_nome} {self.get_sobrenome}\nIdade: {self.get_idade}\nEndereço: {self.get_endereco}\nEspecialidade: {self.__especialidade}\nDepartamento: {self.__departamento}'
     
     def row(self):
-        return f'{self.nomeDef()} {self.sobrenomeDef()},{self.idadeDef()},{self.enderecoDef()},{self.especialidadeDef()},{self.departamentoDef()}'
+        return [self.get_nome,self.get_sobrenome,self.get_idade,self.get_endereco,self.__especialidade,self.__departamento]

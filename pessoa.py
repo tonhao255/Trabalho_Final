@@ -6,33 +6,33 @@ class Pessoa:
         self.__endereco = endereco
 
     @property
-    def nomeDef(self):
+    def get_nome(self):
         return self.__nome
 
-    @nomeDef.setter
-    def nomeDef(self, valor: str):
+    @get_nome.setter
+    def set_nome(self, valor: str):
         self.__nome = valor
 
     @property
-    def sobrenomeDef(self):
+    def get_sobrenome(self):
         return self.__sobrenome
 
-    @sobrenomeDef.setter
-    def sobrenomeDef(self, valor: str):
+    @get_sobrenome.setter
+    def set_sobrenome(self, valor: str):
         self.__sobrenome = valor
 
     @property
-    def idadeDef(self):
+    def get_idade(self):
         return self.__idade
 
-    @idadeDef.setter
-    def idadeDef(self, valor):
+    @get_idade.setter
+    def set_idade(self, valor):
         self.__idade = valor
 
     @property
-    def enderecoDef(self):
+    def get_endereco(self):
         return self.__endereco
 
-    @enderecoDef.setter
-    def enderecoDef(self, valor: str):
+    @get_endereco.setter
+    def set_endereco(self, valor: str):
         self.__endereco = valor

@@ -9,20 +9,20 @@ import os
 import pygame
 import time
 
-# bg_music = str(os.path.realpath(__file__))[0:-7] + "\\jingle_my_bells.mp3"
-# error_snd = str(os.path.realpath(__file__))[0:-7] + "\\metal_pipe.mp3"
+bg_music = "jingle_my_bells.mp3"
+error_snd = "metal_pipe.mp3"
 
-# pygame.mixer.init()
-# pygame.mixer.music.load(bg_music)
-# pygame.mixer.music.play(loops=-1, start=0)
+pygame.mixer.init()
+pygame.mixer.music.load(bg_music)
+pygame.mixer.music.play(loops=-1, start=0)
 
 def error(error_msg:str):
     print(str(error_msg))
-    # pygame.mixer.music.load(error_snd)
-    # pygame.mixer.music.play(loops=1, start=0)
+    pygame.mixer.music.load(error_snd)
+    pygame.mixer.music.play(loops=1, start=0)
     time.sleep(3)
-    # pygame.mixer.music.load(bg_music)
-    # pygame.mixer.music.play(loops=-1, start=0)
+    pygame.mixer.music.load(bg_music)
+    pygame.mixer.music.play(loops=-1, start=0)
 
 os.system('cls' if os.name == 'nt' else 'clear')
 print('''         |
@@ -125,7 +125,7 @@ while(True):
                     individuo = lista_elfos[slct_individuo - 1]
                     print(type(individuo))
                     print(individuo)
-                    print(f"\n-------Editando {lista_elfos[slct_individuo - 1].nomeDef}-------")
+                    print(f"\n-------Editando {lista_elfos[slct_individuo - 1].get_nome}-------")
                     print("Escolha o que vai editar (0 cancela): ")
                     print("1 - Nome")
                     print("2 - Sobrenome")
@@ -143,36 +143,34 @@ while(True):
                         
                         if slct_opcao == 1:
                             novo = input("Insira novo nome: ")
-                            individuo.nomeDef(novo)
+                            individuo.set_nome = novo
 
                         if slct_opcao == 2:
                             novo = input("Insira novo sobrenome: ")
-                            individuo.sobrenomeDef(novo)
+                            individuo.set_sobrenome = novo
                         
                         if slct_opcao == 3:
                             novo = input("Insira nova idade: ")
-                            individuo.idadeDef(novo)
+                            individuo.set_idade = novo
 
                         if slct_opcao == 4:
                             novo = input("Insira novo endereço: ")
-                            individuo.enderecoDef(novo)
+                            individuo.set_endereco = novo
 
                         if slct_opcao == 5:
                             novo = input("Insira nova especialidade: ")
-                            individuo.especialidadeDef(novo)
+                            individuo.set_especialidade = novo
                         
                         if slct_opcao == 6:
                             novo = input("Insira novo departamento: ")
-                            individuo.departamentoDef(novo)
+                            individuo.set_departamento = novo
 
-                        lista_elfos[slct_individuo - 1] = individuo  
-                        changeCSV = input("\nWould you like to make the changes to the CSV file? Y/N: ").lower()
+                        lista_elfos[slct_individuo - 1] = individuo
 
-                        if changeCSV == "y":
-                            with open('activityv4.csv', 'w+', newline='') as file:
-                                myFile = csv.writer(file)
-                                for i in range(len(lista_elfos)):
-                                    myFile.writerow(lista_elfos[i].row())
+                        with open('data\\elfo.csv', 'w+', newline='') as file:
+                            myFile = csv.writer(file)
+                            for i in range(len(lista_elfos)):
+                                myFile.writerow(lista_elfos[i].row())
 
                     # except:
                     #     print(1)

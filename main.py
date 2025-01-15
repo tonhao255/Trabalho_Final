@@ -126,63 +126,70 @@ while(True):
             continue
 
         individuo = lista_elfos[slct_individuo - 1]
-        print(individuo)
-        print(f"\n-------Editando {lista_elfos[slct_individuo - 1].get_nome}-------")
-        print("Escolha o que vai editar (0 cancela): ")
-        print("1 - Nome")
-        print("2 - Sobrenome")
-        print("3 - Idade")
-        print("4 - Endereço")
-        print("5 - Especialidade")
-        print("6 - Departamento")
 
-        try:
-            slct_opcao = int(input("--->"))
-            if slct_opcao == 0:
-                continue
-            if slct_opcao > 6 or slct_opcao < 1:
-                raise ValueError
-        except:
-            error("Opção inválida, tente novamente.")
-            continue                
-        
-        if slct_opcao == 1:
-            novo = input("Insira novo nome: ")
-            individuo.set_nome = novo
+        while(True):
+            print(individuo)
+            print(f"\n-------Editando {lista_elfos[slct_individuo - 1].get_nome}-------")
+            print("Escolha o que vai editar (0 cancela): ")
+            print("1 - Nome")
+            print("2 - Sobrenome")
+            print("3 - Idade")
+            print("4 - Endereço")
+            print("5 - Especialidade")
+            print("6 - Departamento")
 
-        if slct_opcao == 2:
-            novo = input("Insira novo sobrenome: ")
-            individuo.set_sobrenome = novo
-        
-        if slct_opcao == 3:
-            novo = input("Insira nova idade: ")
-            individuo.set_idade = novo
+            try:
+                slct_opcao = int(input("--->"))
+                if slct_opcao == 0:
+                    continue
+                if slct_opcao > 6 or slct_opcao < 1:
+                    raise ValueError
+            except:
+                error("Opção inválida, tente novamente.")
+                continue                
+            
+            if slct_opcao == 1:
+                novo = input("Insira novo nome: ")
+                individuo.set_nome = novo
 
-        if slct_opcao == 4:
-            novo = input("Insira novo endereço: ")
-            individuo.set_endereco = novo
+            if slct_opcao == 2:
+                novo = input("Insira novo sobrenome: ")
+                individuo.set_sobrenome = novo
+            
+            if slct_opcao == 3:
+                novo = input("Insira nova idade: ")
+                individuo.set_idade = novo
 
-        if slct_opcao == 5:
-            novo = input("Insira nova especialidade: ")
-            individuo.set_especialidade = novo
-        
-        if slct_opcao == 6:
-            novo = input("Insira novo departamento: ")
-            individuo.set_departamento = novo
+            if slct_opcao == 4:
+                novo = input("Insira novo endereço: ")
+                individuo.set_endereco = novo
 
-        print("---------------------")
-        print(individuo)
-        print("---------------------")
-        print("Manter alterações? (Digite S)")
-        manter = input("--->")
+            if slct_opcao == 5:
+                novo = input("Insira nova especialidade: ")
+                individuo.set_especialidade = novo
+            
+            if slct_opcao == 6:
+                novo = input("Insira novo departamento: ")
+                individuo.set_departamento = novo
 
-        if manter.upper() == "S":
-            lista_elfos[slct_individuo - 1] = individuo
+            print("---------------------")
+            print(individuo)
+            print("---------------------")
+            print("Escolha:")
+            print("1 - Salvar alterações")
+            print("2 - Continuar editando")
+            print("3 - Voltar ao menu principal")
+            manter = input("--->")
 
-            with open('data\\elfo.csv', 'w+', newline='') as file:
-                myFile = csv.writer(file)
-                for i in range(len(lista_elfos)):
-                    myFile.writerow(lista_elfos[i].row())
+            if manter == "1":
+                lista_elfos[slct_individuo - 1] = individuo
+
+                with open('data\\elfo.csv', 'w+', newline='') as file:
+                    myFile = csv.writer(file)
+                    for i in range(len(lista_elfos)):
+                        myFile.writerow(lista_elfos[i].row())
+            if manter != "2":
+                break
 
     if slct_servico == 2:
 
@@ -221,68 +228,76 @@ while(True):
             continue
 
         individuo = lista_criancas[slct_individuo - 1]
-        print(individuo)
-        print(f"\n-------Editando {lista_criancas[slct_individuo - 1].get_nome}-------")
-        print("Escolha o que vai editar (0 cancela): ")
-        print("1 - Nome")
-        print("2 - Sobrenome")
-        print("3 - Idade")
-        print("4 - Endereço")
-        print("5 - Chaminé")
-        print("6 - Status Presentes")
-        print("7 - Lista Ranking")
 
-        try:
-            slct_opcao = int(input("--->"))
-            if slct_opcao == 0:
-                continue
-            if slct_opcao > 6 or slct_opcao < 1:
-                raise ValueError
-        except:
-            error("Opção inválida, tente novamente.")
-            continue                
-        
-        if slct_opcao == 1:
-            novo = input("Insira novo nome: ")
-            individuo.set_nome = novo
+        while(True):
+            print(individuo)
+            print(f"\n-------Editando {lista_criancas[slct_individuo - 1].get_nome}-------")
+            print("Escolha o que vai editar (0 cancela): ")
+            print("1 - Nome")
+            print("2 - Sobrenome")
+            print("3 - Idade")
+            print("4 - Endereço")
+            print("5 - Chaminé")
+            print("6 - Status Presentes")
+            print("7 - Lista Ranking")
 
-        if slct_opcao == 2:
-            novo = input("Insira novo sobrenome: ")
-            individuo.set_sobrenome = novo
-        
-        if slct_opcao == 3:
-            novo = input("Insira nova idade: ")
-            individuo.set_idade = novo
+            try:
+                slct_opcao = int(input("--->"))
+                if slct_opcao == 0:
+                    continue
+                if slct_opcao > 6 or slct_opcao < 1:
+                    raise ValueError
+            except:
+                error("Opção inválida, tente novamente.")
+                continue                
+            
+            if slct_opcao == 1:
+                novo = input("Insira novo nome: ")
+                individuo.set_nome = novo
 
-        if slct_opcao == 4:
-            novo = input("Insira novo endereço: ")
-            individuo.set_endereco = novo
+            if slct_opcao == 2:
+                novo = input("Insira novo sobrenome: ")
+                individuo.set_sobrenome = novo
+            
+            if slct_opcao == 3:
+                novo = input("Insira nova idade: ")
+                individuo.set_idade = novo
 
-        if slct_opcao == 5:
-            novo = input("Insira novo status da chaminé: ")
-            individuo.set_chamine = novo
-        
-        if slct_opcao == 6:
-            novo = input("Insira novo status dos presentes: ")
-            individuo.set_stetus_presentes = novo
+            if slct_opcao == 4:
+                novo = input("Insira novo endereço: ")
+                individuo.set_endereco = novo
 
-        if slct_opcao == 7:
-            novo = input("Insira novo ranking: ")
-            individuo.set_ranking = novo
-        
-        print("---------------------")
-        print(individuo)
-        print("---------------------")
-        print("Manter alterações? (Digite S)")
-        manter = input("--->")
+            if slct_opcao == 5:
+                novo = input("Insira novo status da chaminé: ")
+                individuo.set_chamine = novo
+            
+            if slct_opcao == 6:
+                novo = input("Insira novo status dos presentes: ")
+                individuo.set_stetus_presentes = novo
 
-        if manter.upper() == "S":
-            lista_criancas[slct_individuo - 1] = individuo
+            if slct_opcao == 7:
+                novo = input("Insira novo ranking: ")
+                individuo.set_ranking = novo
+            
+            print("---------------------")
+            print(individuo)
+            print("---------------------")
+            print("Escolha:")
+            print("1 - Salvar alterações")
+            print("2 - Continuar editando")
+            print("3 - Voltar ao menu principal")
+            manter = input("--->")
 
-            with open('data\\crianca.csv', 'w+', newline='') as file:
-                myFile = csv.writer(file)
-                for i in range(len(lista_criancas)):
-                    myFile.writerow(lista_criancas[i].row())
+            if manter == "1":
+                lista_criancas[slct_individuo - 1] = individuo
+
+                with open('data\\crianca.csv', 'w+', newline='') as file:
+                    myFile = csv.writer(file)
+                    for i in range(len(lista_criancas)):
+                        myFile.writerow(lista_criancas[i].row())
+            
+            if manter != "2":
+                break
 
     if slct_servico == 3:
         
@@ -321,53 +336,61 @@ while(True):
             continue
 
         individuo = lista_presentes[slct_individuo - 1]
-        print(individuo)
-        print(f"\n-------Editando {lista_presentes[slct_individuo - 1].get_nome_presente}-------")
-        print("Escolha o que vai editar (0 cancela): ")
-        print("1 - Nome")
-        print("2 - Tamanho")
-        print("3 - Produzido")
-        print("4 - Entregue")
 
-        try:
-            slct_opcao = int(input("--->"))
-            if slct_opcao == 0:
-                continue
-            if slct_opcao > 4 or slct_opcao < 1:
-                raise ValueError
-        except:
-            error("Opção inválida, tente novamente.")
-            continue                
-        
-        if slct_opcao == 1:
-            novo = input("Insira novo nome: ")
-            individuo.set_nome_presente = novo
+        while(True):
+            print(individuo)
+            print(f"\n-------Editando {lista_presentes[slct_individuo - 1].get_nome_presente}-------")
+            print("Escolha o que vai editar (0 cancela): ")
+            print("1 - Nome")
+            print("2 - Tamanho")
+            print("3 - Produzido")
+            print("4 - Entregue")
 
-        if slct_opcao == 2:
-            novo = input("Insira novo tamanho: ")
-            individuo.set_tamanho = novo
-        
-        if slct_opcao == 3:
-            novo = input("Insira novo status produzido: ")
-            individuo.set_status_produzido = novo
+            try:
+                slct_opcao = int(input("--->"))
+                if slct_opcao == 0:
+                    continue
+                if slct_opcao > 4 or slct_opcao < 1:
+                    raise ValueError
+            except:
+                error("Opção inválida, tente novamente.")
+                continue                
+            
+            if slct_opcao == 1:
+                novo = input("Insira novo nome: ")
+                individuo.set_nome_presente = novo
 
-        if slct_opcao == 4:
-            novo = input("Insira novo status entregue: ")
-            individuo.set_status_entregue = novo
+            if slct_opcao == 2:
+                novo = input("Insira novo tamanho: ")
+                individuo.set_tamanho = novo
+            
+            if slct_opcao == 3:
+                novo = input("Insira novo status produzido: ")
+                individuo.set_status_produzido = novo
 
-        print("---------------------")
-        print(individuo)
-        print("---------------------")
-        print("Manter alterações? (Digite S)")
-        manter = input("--->")
+            if slct_opcao == 4:
+                novo = input("Insira novo status entregue: ")
+                individuo.set_status_entregue = novo
 
-        if manter.upper() == "S":
-            lista_presentes[slct_individuo - 1] = individuo
+            print("---------------------")
+            print(individuo)
+            print("---------------------")
+            print("Escolha:")
+            print("1 - Salvar alterações")
+            print("2 - Continuar editando")
+            print("3 - Voltar ao menu principal")
+            manter = input("--->")
 
-            with open('data\\presente.csv', 'w+', newline='') as file:
-                myFile = csv.writer(file)
-                for i in range(len(lista_presentes)):
-                    myFile.writerow(lista_presentes[i].row())
+            if manter == "1":
+                lista_presentes[slct_individuo - 1] = individuo
+
+                with open('data\\presente.csv', 'w+', newline='') as file:
+                    myFile = csv.writer(file)
+                    for i in range(len(lista_presentes)):
+                        myFile.writerow(lista_presentes[i].row())
+
+            if manter != "2":
+                break
                     
     if slct_servico == 4:
 
@@ -381,28 +404,30 @@ while(True):
                     error("Erro ao carregar dados do arquivo.")
                     continue
                 
-            slct_print = input("Imprimir Claus? digite 1: ")
-            if slct_print == "1":
-                j = 0
-                for i in lista_claus:
-                    j += 1
-                    print(f"\n------Claus N°{j}------")
-                    print(i)
+        slct_print = input("Imprimir Claus? digite 1: ")
+        if slct_print == "1":
+            j = 0
+            for i in lista_claus:
+                j += 1
+                print(f"\n------Claus N°{j}------")
+                print(i)
 
-            print("\n---------Seleção----------")
-            print("selecione Claus por número (0 cancela)")
+        print("\n---------Seleção----------")
+        print("selecione Claus por número (0 cancela)")
 
-            try:
-                slct_individuo = int(input("--->"))
-                if slct_individuo == 0:
-                    continue
-                if slct_individuo > len(lista_claus) or slct_individuo < 0:
-                    raise ValueError
-            except:
-                error("Opção inválida, tente novamente.")
+        try:
+            slct_individuo = int(input("--->"))
+            if slct_individuo == 0:
                 continue
+            if slct_individuo > len(lista_claus) or slct_individuo < 0:
+                raise ValueError
+        except:
+            error("Opção inválida, tente novamente.")
+            continue
 
-            individuo = lista_claus[slct_individuo - 1]
+        individuo = lista_claus[slct_individuo - 1]
+
+        while(True):
             print(individuo)
             print(f"\n-------Editando {lista_claus[slct_individuo - 1].get_nome}-------")
             print("Escolha o que vai editar (0 cancela): ")
@@ -442,19 +467,26 @@ while(True):
                 novo = input("Insira a nova licensa do treno: ")
                 individuo.set_licensa_treno = novo
 
-                print("---------------------")
-                print(individuo)
-                print("---------------------")
-                print("Manter alterações? (Digite S)")
-                manter = input("--->")
+            print("---------------------")
+            print(individuo)
+            print("---------------------")
+            print("Escolha:")
+            print("Escolha:")
+            print("1 - Salvar alterações")
+            print("2 - Continuar editando")
+            print("3 - Voltar ao menu principal")
+            manter = input("--->")
 
-                if manter.upper() == "S":
-                    lista_claus[slct_individuo - 1] = individuo
+            if manter == "1":
+                lista_claus[slct_individuo - 1] = individuo
 
-                    with open('data\\claus.csv', 'w+', newline='') as file:
-                        myFile = csv.writer(file)
-                        for i in range(len(lista_claus)):
-                            myFile.writerow(lista_claus[i].row())
+                with open('data\\claus.csv', 'w+', newline='') as file:
+                    myFile = csv.writer(file)
+                    for i in range(len(lista_claus)):
+                        myFile.writerow(lista_claus[i].row())
+
+            if manter != "2":
+                break
 
 
 # with open(data) as data:

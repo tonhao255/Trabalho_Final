@@ -9,28 +9,25 @@ class Elfo(Pessoa):
 
         super().__init__(nome, sobrenome, idade, endereco)
 
-        self.especialidade = especialidade
-        self.departamento = departamento
+        self.__especialidade = especialidade
+        self.__departamento = departamento
 
     @property
-    def especialidade(self):
-        return self._especialidade
+    def especialidadeDef(self):
+        return self.__especialidade
     
-    @especialidade.setter
-    def especialidade(self, valor: str):
-        if isinstance(valor, str):
-            self.especialidade = valor
-        else:
-            raise ValueError("A especialidade deve ser uma string.")
+    @especialidadeDef.setter
+    def especialidadeDef(self, valor: str):
+        self.__especialidade = valor
 
     @property
-    def departamento(self):
-        return self._departamento
+    def departamentoDef(self):
+        return self.__departamento
     
-    @departamento.setter
-    def departamento(self, valor: str):
+    @departamentoDef.setter
+    def departamentoDef(self, valor: str):
         if isinstance(valor, str):
-            self.departamento = valor
+            self.__departamento = valor
         else:
             raise ValueError("O departamento deve ser uma string.")
         
@@ -40,3 +37,9 @@ class Elfo(Pessoa):
             print(f"O presente '{presente.nome_presente}' foi produzido pelo elfo {self._nome}.")
         else:
             raise ValueError("O argumento deve ser uma instância da classe Presente.")
+        
+    def __str__(self):
+        return f'Elfo: {self.nomeDef} {self.sobrenomeDef}\nIdade: {self.idadeDef}\nEndereço: {self.enderecoDef}\nEspecialidade: {self.especialidadeDef}\nDepartamento: {self.departamentoDef}'
+    
+    def row(self):
+        return f'{self.nomeDef()} {self.sobrenomeDef()},{self.idadeDef()},{self.enderecoDef()},{self.especialidadeDef()},{self.departamentoDef()}'

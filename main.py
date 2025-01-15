@@ -20,7 +20,7 @@ def error(error_msg:str):
     print(str(error_msg))
     # pygame.mixer.music.load(error_snd)
     # pygame.mixer.music.play(loops=1, start=0)
-    # time.sleep(3)
+    time.sleep(3)
     # pygame.mixer.music.load(bg_music)
     # pygame.mixer.music.play(loops=-1, start=0)
 
@@ -64,6 +64,7 @@ if not presente.is_file():
     presente = open("data\\presente.csv", "a")
 
 while(True):
+    wrong = 0
     os.system('cls' if os.name == 'nt' else 'clear')
 
     print("\n-------Welcome to the Jolly System-------")
@@ -79,51 +80,52 @@ while(True):
             raise ValueError
     except:
         error("Opção inválida, tente novamente.") # <--- função interna criada lá em cima
+        wrong = 1
     
-    if slct_servico == 1:
-        
-        listacsv = []
-        with open(elfo, 'r') as file:
-            myFile = csv.reader(file, delimiter=",")
-            for row in myFile:
-                listacsv.append(row)
 
-        slct_print = input("Imprimir Elfos? digite 1: ")
-        wrong = 0
-        if slct_print == "1":
-            j = 0
-            for i in listacsv:
-                j += 1
-                print("")
-                print(f"------Elfo N°{j}------")
-                try:
-                    print(f'Nome: {i[0]} \nSobrenome: {i[1]} \nIdade: {i[2]} \nEndereco: {i[3]} \nEspecialidade: {i[4]} \nDepartamento: {i[5]}')
-                except:
-                    error("não foi possivel realizar a mostra de dados, o arquivo pode estar corrompido!")
-                    wrong = 1
+    if wrong == 0:
+        print("ok")
+        time.sleep(1)
+        if slct_servico == 1:
             
-        if wrong == 0:
-
-            print("")
-            print("---------Seleção----------")
-            print("selecione elfo por número (0 cancela)")
-
-            try:
-                slct_individuo = int(input("--->"))
-
-                if slct_individuo == 0:
-                    pass
-                elif slct_individuo > len(listacsv) or slct_individuo < 1:
-                    raise ValueError
-                individuo = listacsv[slct_individuo - 1]
-                try:
-                    print(f'Nome: {individuo[0]} \nSobrenome: {individuo[1]} \nIdade: {individuo[2]} \nEndereco: {individuo[3]} \nEspecialidade: {individuo[4]} \nDepartamento: {individuo[5]}')
-                except:
-                    error("não foi possivel realizar a mostra de dados, o arquivo pode estar corrompido!")
-                    wrong = 1
+            lista_elfos = []
+            with open(elfo, 'r') as file:
+                myFile = csv.reader(file, delimiter=",")
+                for row in myFile:
+                    try:
+                        lista_elfos.append(Elfo(str(row[0]), str(row[1]), str(row[2]), str(row[3]), str(row[4]), str(row[5])))
+                    except:
+                        error("Erro ao carregar dados do arquivo.")
+                        wrong = 1
+                    
+            if wrong == 0:
+                slct_print = input("Imprimir Elfos? digite 1: ")
                 
-                if wrong == 0:
-                    print(f"\n-------Editando {i[0]}-------")
+                if slct_print == "1":
+                    j = 0
+                    for i in lista_elfos:
+                        j += 1
+                        print("")
+                        print(f"------Elfo N°{j}------")
+                        print(i)
+
+                print("")
+                print("---------Seleção----------")
+                print("selecione elfo por número (0 cancela)")
+
+                #try:
+                if True:
+                    print(len(lista_elfos))
+                    slct_individuo = int(input("--->"))
+
+                    if slct_individuo == 0:
+                        pass
+                    elif slct_individuo > len(lista_elfos) or slct_individuo < 1:
+                        raise ValueError
+                    individuo = lista_elfos[slct_individuo - 1]
+                    print(type(individuo))
+                    print(individuo)
+                    print(f"\n-------Editando {lista_elfos[slct_individuo - 1].nomeDef}-------")
                     print("Escolha o que vai editar (0 cancela): ")
                     print("1 - Nome")
                     print("2 - Sobrenome")
@@ -131,7 +133,7 @@ while(True):
                     print("4 - Endereço")
                     print("5 - Especialidade")
                     print("6 - Departamento")
-                    try:
+                    if True:
                         slct_opcao = int(input("--->"))
                         if slct_opcao == 0:
                             pass #pra lembrar que 0 é cancelar
@@ -141,27 +143,45 @@ while(True):
                         
                         if slct_opcao == 1:
                             novo = input("Insira novo nome: ")
+                            individuo.nomeDef(novo)
 
                         if slct_opcao == 2:
-                            pass
+                            novo = input("Insira novo sobrenome: ")
+                            individuo.sobrenomeDef(novo)
                         
                         if slct_opcao == 3:
-                            pass
+                            novo = input("Insira nova idade: ")
+                            individuo.idadeDef(novo)
 
                         if slct_opcao == 4:
-                            pass
+                            novo = input("Insira novo endereço: ")
+                            individuo.enderecoDef(novo)
 
                         if slct_opcao == 5:
-                            pass
+                            novo = input("Insira nova especialidade: ")
+                            individuo.especialidadeDef(novo)
                         
                         if slct_opcao == 6:
-                            pass
+                            novo = input("Insira novo departamento: ")
+                            individuo.departamentoDef(novo)
 
-                    except:
-                        error("Opção inválida, tente novamente.")
+                        lista_elfos[slct_individuo - 1] = individuo  
+                        changeCSV = input("\nWould you like to make the changes to the CSV file? Y/N: ").lower()
 
-            except:
-                error("Opção inválida, tente novamente.")
+                        if changeCSV == "y":
+                            with open('activityv4.csv', 'w+', newline='') as file:
+                                myFile = csv.writer(file)
+                                for i in range(len(lista_elfos)):
+                                    myFile.writerow(lista_elfos[i].row())
+
+                    # except:
+                    #     print(1)
+                    #     error("Opção inválida, tente novamente.")
+                        
+
+                #except:
+                    # print(2)
+                    # error("Opção inválida, tente novamente.")
 
 
 # with open(data) as data:

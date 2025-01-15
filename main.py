@@ -43,23 +43,23 @@ i/ *   O   O   * \\i
        |___|''')    
 time.sleep(2)
 
-data = Path(str(os.path.realpath(__file__))[0:-7] + "\\data")
+data = Path("data")
 if not data.is_dir():
     os.mkdir("data")
 
-claus = Path(str(os.path.realpath(__file__))[0:-7] + "\\data\\claus.csv")
+claus = Path("data\\claus.csv")
 if not claus.is_file():
     claus = open("data\\claus.csv", "a")
 
-elfo = Path(str(os.path.realpath(__file__))[0:-7] + "\\data\\elfo.csv")
+elfo = Path("data\\elfo.csv")
 if not elfo.is_file():
     elfo = open("data\\elfo.csv", "a")
 
-crianca = Path(str(os.path.realpath(__file__))[0:-7] + "\\data\\crianca.csv")
+crianca = Path("data\\crianca.csv")
 if not crianca.is_file():
     crianca = open("data\\crianca.csv", "a")
 
-presente = Path(str(os.path.realpath(__file__))[0:-7] + "\\data\\presente.csv")
+presente = Path("data\\presente.csv")
 if not presente.is_file():
     presente = open("data\\presente.csv", "a")
 
@@ -82,21 +82,25 @@ while(True):
     
     if slct_servico == 1:
         
-        slct_print = input("Imprimir Elfos? digite 1: ")# só acontece caso ele queira printar
+        listacsv = []
+        with open(elfo, 'r') as file:
+            myFile = csv.reader(file, delimiter=",")
+            for row in myFile:
+                listacsv.append(row)
+
+        slct_print = input("Imprimir Elfos? digite 1: ")
         wrong = 0
         if slct_print == "1":
-            with open(elfo) as elfo_data:
-                elfo_reader = csv.reader(elfo_data, delimiter=',')
-                j = 0
-                for i in elfo_reader:
-                    j += 1
-                    print("")
-                    print(f"------Elfo N°{j}------")
-                    try:
-                        print(f'Nome: {i[0]} \nSobrenome: {i[1]} \nIdade: {i[2]} \nEndereco: {i[3]} \nEspecialidade: {i[4]} \nDepartamento: {i[5]}')
-                    except:
-                        error("não foi possivel realizar a mostra de dados, o arquivo pode estar corrompido!")
-                        wrong = 1
+            j = 0
+            for i in listacsv:
+                j += 1
+                print("")
+                print(f"------Elfo N°{j}------")
+                try:
+                    print(f'Nome: {i[0]} \nSobrenome: {i[1]} \nIdade: {i[2]} \nEndereco: {i[3]} \nEspecialidade: {i[4]} \nDepartamento: {i[5]}')
+                except:
+                    error("não foi possivel realizar a mostra de dados, o arquivo pode estar corrompido!")
+                    wrong = 1
             
         if wrong == 0:
 
@@ -106,24 +110,20 @@ while(True):
 
             try:
                 slct_individuo = int(input("--->"))
+
                 if slct_individuo == 0:
                     pass
-                if slct_individuo > j or slct_individuo < 1:
+                elif slct_individuo > len(listacsv) or slct_individuo < 1:
                     raise ValueError
-                with open(elfo) as elfo_data:
-                    elfo_reader = csv.reader(elfo_data, delimiter=',')
-                    k = 0
-                    for i in elfo_reader:
-                        k += 1
-                        if k == slct_individuo:
-                            try:
-                                print(f'Nome: {i[0]} \nSobrenome: {i[1]} \nIdade: {i[2]} \nEndereco: {i[3]} \nEspecialidade: {i[4]} \nDepartamento: {i[5]}')
-                            except:
-                                error("não foi possivel realizar a mostra de dados, o arquivo pode estar corrompido!")
-                                wrong = 1
-
+                individuo = listacsv[slct_individuo - 1]
+                try:
+                    print(f'Nome: {individuo[0]} \nSobrenome: {individuo[1]} \nIdade: {individuo[2]} \nEndereco: {individuo[3]} \nEspecialidade: {individuo[4]} \nDepartamento: {individuo[5]}')
+                except:
+                    error("não foi possivel realizar a mostra de dados, o arquivo pode estar corrompido!")
+                    wrong = 1
+                
                 if wrong == 0:
-                    print(f"-------Editando {i[0]}-------")
+                    print(f"\n-------Editando {i[0]}-------")
                     print("Escolha o que vai editar (0 cancela): ")
                     print("1 - Nome")
                     print("2 - Sobrenome")
@@ -136,7 +136,7 @@ while(True):
                         if slct_opcao == 0:
                             pass #pra lembrar que 0 é cancelar
                             
-                        if slct_opcao > 6 or slct_opcao < 1:
+                        elif slct_opcao > 6 or slct_opcao < 1:
                             raise ValueError
                         
                         if slct_opcao == 1:

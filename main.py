@@ -13,17 +13,17 @@ import time
 bg_music = "jingle_my_bells.mp3"
 error_snd = "metal_pipe.mp3"
 
-# pygame.mixer.init()
-# pygame.mixer.music.load(bg_music)
-# pygame.mixer.music.play(loops=-1, start=0)
+pygame.mixer.init()
+pygame.mixer.music.load(bg_music)
+pygame.mixer.music.play(loops=-1, start=0)
 
 def error(error_msg:str):
     print(str(error_msg))
-    # pygame.mixer.music.load(error_snd)
-    # pygame.mixer.music.play(loops=1, start=0)
+    pygame.mixer.music.load(error_snd)
+    pygame.mixer.music.play(loops=1, start=0)
     time.sleep(3)
-    # pygame.mixer.music.load(bg_music)
-    # pygame.mixer.music.play(loops=-1, start=0)
+    pygame.mixer.music.load(bg_music)
+    pygame.mixer.music.play(loops=-1, start=0)
 
 os.system('cls' if os.name == 'nt' else 'clear')
 print('''         |
